@@ -1,0 +1,23 @@
+<div class="container">		  
+	<h1>Information du compte</h1>
+	<h3>{{ posts.utilisateur }}</h3>
+		<div >
+			<label>Pseudo: </label>
+			<input [(ngModel)]="posts.title" placeholder="pseudo" />
+		</div>
+		<br>
+		<div >
+			<label>Email: </label>
+			<input type="email" name="email"[(ngModel)]="posts.email" placeholder="email">
+		</div>
+		<br>
+		<div >
+			<label>Naissance: </label>
+			<input [(ngModel)]="posts.naissance" placeholder="naissance" />
+		</div>
+		<br>
+		<div >
+			<input type="submit" (click)="save(posts)" value="modifier">    
+		</div>
+		
+</div>

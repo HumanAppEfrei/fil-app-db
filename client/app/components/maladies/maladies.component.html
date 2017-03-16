@@ -1,0 +1,96 @@
+<h1>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li> <a href="#">Accueil</a> </li>
+      <li> <a href="#" (click)="showHideInvitation()"  (click)="getFriends()">My Friends</a></li>
+      <li> <a href="#">Send an invitation</a> </li>
+      <li> <a href="#" (click)="showHideInvitation()"
+      (click)="getUsers()" >My invitations</a> </li>
+    </ul>
+    <form class="navbar-form navbar-right inline-form">
+      <div class="form-group">
+        <input type="search" class="input-sm form-control" placeholder="Recherche" #name>
+
+        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Find</button>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<div class="research">
+    
+            <div *ngFor="let user of users">
+                
+                <span *ngIf="name.value == user.pseudo ">
+                <div class="col-md-1">
+                </div>
+                  <h1><b>My research</b></h1>
+                  <div class="col-md-7">
+                  {{user.pseudo}} 
+                  </div>     
+                  <div class="col-md-4">
+                    <input type="button" value="Add" class="btn btn-success">    
+                  </div>
+                  <br/><br/>
+                </span>
+            
+        
+            
+            </div>
+            <br><br>
+    
+</div>
+
+<span *ngIf="areMyInvitaionsSelected">
+	<div class="task-list">
+  <h1><b>My Invitation</b></h1>
+    <div *ngFor="let task of tasks">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-7">
+            <div *ngFor="let user of users">
+                <span *ngIf="task.idSender == user._id ">
+                {{user.pseudo}} : {{task.text}}     
+
+                </span>
+            </div>
+        </div> 
+        <div class="col-md-4">
+            <input type="button" value="Accept" class="btn btn-success">    
+            <input type="button" (click)="deleteInvitation(task._id)" value="Refuse" class="btn btn-danger">    
+        </div>
+        <br><br>
+    </div>
+</div>
+
+
+
+
+
+</span>
+<span *ngIf="!areMyInvitaionsSelected">
+  <div class="task-list">
+  <h1><b>My Friend</b></h1>
+    <div *ngFor="let friend of friends">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-7">
+            <div *ngFor="let user of users">
+                <span *ngIf="friend.idFollower == user._id ">
+                {{user.pseudo}}     
+
+                </span>
+            </div>
+        </div> 
+        <div class="col-md-4">
+               
+            <input type="button" (click)="deleteFriend(friend._id)" value="Remove" class="btn btn-danger">    
+        </div>
+        <br><br>
+    </div>
+</div>
+
+
+</span>
+</h1>
